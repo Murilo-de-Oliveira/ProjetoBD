@@ -1,7 +1,7 @@
 package br.inatel.Model;
 
 public class Empregado {
-    private int id;
+    private static int id;
     private String nome;
     private String sobrenome;
     private String funcao;
@@ -9,7 +9,7 @@ public class Empregado {
     private String telefone;
 
     public Empregado(int id, String nome, String sobrenome, String funcao, int salario, String telefone) {
-        this.id = id;
+        id++;
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.funcao = funcao;
