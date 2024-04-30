@@ -2,6 +2,7 @@ package br.inatel.DAO;
 
 import br.inatel.Model.Cliente;
 import br.inatel.Model.PedidoHasRemedio;
+import br.inatel.Model.Remedio;
 
 import java.sql.SQLException;
 public class PedidoHasRemedioDAO extends ConnectionDAO{
@@ -12,14 +13,15 @@ public class PedidoHasRemedioDAO extends ConnectionDAO{
 
         connect();
 
-        String sql = "INSERT INTO pedidoHasremedio (idPedido,idRemedio,preco,qntPedida) values (?,?,?,?)";
+        String sql = "INSERT INTO pedidoHasremedio (idDoPedido,idPedido,idRemedio,preco,qntPedida) values (?,?,?,?)";
 
         try{
             pst = connection.prepareStatement(sql);
             pst.setInt(1,pedidoHasRemedio.getIdPedido());
-            pst.setInt(2,pedidoHasRemedio.getIdRemedio());
-            pst.setDouble(3,pedidoHasRemedio.getPreco());
-            pst.setInt(4,pedidoHasRemedio.getQntPedido());
+            pst.setInt(2,pedidoHasRemedio.getIdPedido());
+            pst.setInt(3,pedidoHasRemedio.getIdRemedio());
+            pst.setDouble(4,pedidoHasRemedio.getPreco());
+            pst.setInt(5,pedidoHasRemedio.getQntPedido());
             pst.execute();
             sucesso = true;
         } catch (SQLException ex){
@@ -34,5 +36,43 @@ public class PedidoHasRemedioDAO extends ConnectionDAO{
             }
         }
         return sucesso;
+    }
+
+    public void searchPedidoRemedio(int pedidoId){
+
+        connect();
+
+        String sql = "SELECT * FROM pedidoHasRemedio WHERE clienteId = ?";
+
+        try{
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery(sql); //ref. a tabela resultante da busca
+            while (resultSet.next()) {
+                PedidoHasRemedio pedidoHasRemedio  = new PedidoHasRemedio(
+                        resultSet.getInt("idDoPedido"),
+                        resultSet.getInt("idPedido"),
+                        resultSet.getInt("idRemedio"),
+                        resultSet.getDouble("preco"),
+                        resultSet.getInt("qntPedida")
+                );
+                if (pedidoHasRemedio.getIdPedido() == pedidoId) {
+                    System.out.println("Id do PedidoHasRemedio: " + pedidoHasRemedio.getIdDoPedido());
+                    System.out.println("Id do Pedido: " + pedidoHasRemedio.getIdPedido());
+                    System.out.println("Id do Remédio: " + pedidoHasRemedio.getIdRemedio());
+                    System.out.println("Preço: " + pedidoHasRemedio.getPreco());
+                    System.out.println("Quantidade do remédio: " + pedidoHasRemedio.getQntPedido());
+                }
+            }
+        } catch (SQLException ex){
+            System.out.println("Erro de conexao  = " + ex.getMessage());
+            sucesso = false;
+        }finally {
+            try {
+                connection.close();
+                pst.close();
+            } catch (SQLException e) {
+                System.out.println("Erro de conexao " + e.getMessage());
+            }
+        }
     }
 }

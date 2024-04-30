@@ -6,10 +6,10 @@ public class Empregado {
     private String sobrenome;
     private String funcao;
     private int salario;
-    private int telefone;
+    private String telefone;
 
-    public Empregado(int id, String nome, String sobrenome, String funcao, int salario, int telefone) {
-        this.id = id;
+    public Empregado(int idTemp, String nome, String sobrenome, String funcao, int salario, String telefone) {
+        this.id = idTemp;
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.funcao = funcao;
@@ -37,7 +37,7 @@ public class Empregado {
         return salario;
     }
 
-    public int getTelefone() {
+    public String getTelefone() {
         return telefone;
     }
 }

@@ -8,7 +8,7 @@ public class ConnectionDAO {
 
     static final String user = "root";
     static final String password = "?0jy@@T8";
-    static final String database = "";
+    static final String database = "mydb";
 
     static final String url = "jdbc:mysql://localhost:3306/" + database + "?useTimezone=true&serverTimezone=UTC&useSSL=false";
     public boolean check = false;
