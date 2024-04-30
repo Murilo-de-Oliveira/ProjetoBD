@@ -21,8 +21,8 @@ public class Remedio {
         this.validade = validade;
         this.preco = preco;
     }
-    public Remedio(int id, String nomeRemedio, String fabricante, String tipoRemedio, int estoque, String validade, double preco) {
-        this.idTemp = id;
+    public Remedio(int idTemp, String nomeRemedio, String fabricante, String tipoRemedio, int estoque, String validade, double preco) {
+        this.idTemp = idTemp;
         this.nomeRemedio = nomeRemedio;
         this.fabricante = fabricante;
         this.tipoRemedio = tipoRemedio;
