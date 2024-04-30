@@ -2,13 +2,20 @@ package br.inatel.Model;
 import java.util.Date;
 
 public class Pedido {
-    private int idPedido;
+    private static int idPedido;
+    private int idPedidoTemp;
     private String data;
     private int clienteId;
     private int empregadoId;
 
+    public Pedido(String data, int clienteId, int empregadoId) {
+        idPedido++;
+        this.data = data;
+        this.clienteId = clienteId;
+        this.empregadoId = empregadoId;
+    }
     public Pedido(int idPedido, String data, int clienteId, int empregadoId) {
-        this.idPedido = idPedido;
+        this.idPedidoTemp = idPedido;
         this.data = data;
         this.clienteId = clienteId;
         this.empregadoId = empregadoId;

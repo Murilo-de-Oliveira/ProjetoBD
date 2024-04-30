@@ -1,6 +1,6 @@
 package br.inatel.DAO;
 
-import br.inatel.Model.Empregado;
+import br.inatel.Model.PedidoHasRemedio;
 import br.inatel.Model.Pedido;
 
 import java.sql.SQLException;
@@ -121,7 +121,6 @@ public class PedidoDAO extends ConnectionDAO{
         String sql = "SELECT * FROM pedido WHERE idPedido = ?";
 
         try {
-
             pst = connection.prepareStatement(sql);
             pst.setInt(1, idPedido);
             resultSet = pst.executeQuery();

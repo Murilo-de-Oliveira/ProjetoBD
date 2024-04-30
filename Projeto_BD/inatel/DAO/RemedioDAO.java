@@ -79,6 +79,45 @@ public class RemedioDAO extends ConnectionDAO{
         return verificado;
     }
 
+    //Buscar remédio (retorna remédio) no Banco de Dados
+    public Remedio searchRemedioId(int remedioId) {
+
+        Remedio remedioReturn = null;
+        connect();
+
+        String sql = "SELECT * FROM remedio";
+
+        try {
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery(sql); //ref. a tabela resultante da busca
+            while (resultSet.next()) {
+                Remedio remedioTemp = new Remedio(
+                        resultSet.getInt("id"),
+                        resultSet.getString("nomeRemedio"),
+                        resultSet.getString("fabricante"),
+                        resultSet.getString("tipoRemedio"),
+                        resultSet.getInt("estoque"),
+                        resultSet.getString("validade"),
+                        resultSet.getDouble("preco")
+                );
+                if (remedioTemp.getId() == remedioId) {
+                    remedioReturn = remedioTemp;
+                }
+            }
+        } catch (SQLException ex) {
+            System.out.println("Erro = " + ex.getMessage());
+
+        } finally {
+            try {
+                connection.close();
+                statement.close();
+            } catch (SQLException ex) {
+                System.out.println("Erro = " + ex.getMessage());
+            }
+        }
+        return remedioReturn;
+    }
+
     //Listar infos de um remedio no Banco de Dados
     public void selectInfosRemedio(int remedioId) {
 
