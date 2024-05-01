@@ -13,7 +13,7 @@ public class PedidoHasRemedioDAO extends ConnectionDAO{
 
         connect();
 
-        String sql = "INSERT INTO pedidoHasremedio (idDoPedido,idPedido,idRemedio,preco,qntPedida) values (?,?,?,?)";
+        String sql = "INSERT INTO pedidoHasremedio (idDoPedido,idPedido,idRemedio,preco,quantidadePedida) values (?,?,?,?)";
 
         try{
             pst = connection.prepareStatement(sql);
@@ -53,7 +53,7 @@ public class PedidoHasRemedioDAO extends ConnectionDAO{
                         resultSet.getInt("idPedido"),
                         resultSet.getInt("idRemedio"),
                         resultSet.getDouble("preco"),
-                        resultSet.getInt("qntPedida")
+                        resultSet.getInt("quantidadePedida")
                 );
                 if (pedidoHasRemedio.getIdPedido() == pedidoId) {
                     System.out.println("Id do PedidoHasRemedio: " + pedidoHasRemedio.getIdDoPedido());

@@ -1,8 +1,6 @@
 package br.inatel.DAO;
 
 import br.inatel.Model.Cliente;
-import br.inatel.Model.Pedido;
-
 import java.sql.SQLException;
 
 public class ClienteDAO extends ConnectionDAO{
