@@ -12,7 +12,7 @@ public class EmpregadoDAO extends ConnectionDAO{
 
         connect();
 
-        String sql = "INSERT INTO cliente (id,nome,sobrenome,funcao,salario,telefone) values (?,?,?,?,?,?)";
+        String sql = "INSERT INTO empregado (id,nome,sobrenome,funcao,salario,telefone) values (?,?,?,?,?,?)";
 
         try{
             pst = connection.prepareStatement(sql);
@@ -44,7 +44,7 @@ public class EmpregadoDAO extends ConnectionDAO{
         boolean verificado = false;
         connect();
 
-        String sql = "SELECT * FROM cliente";
+        String sql = "SELECT * FROM empregado";
 
         try {
             statement = connection.createStatement();
