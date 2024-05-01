@@ -48,6 +48,22 @@ public class Main {
         //Instanciando a classe de adquirir a data
         Data data = new Data();
 
+        Empregado empregado1 = new Empregado(
+                3,
+                "Pedro",
+                "Silva",
+                "Gerente",
+                5000,
+                "12341234"
+        );
+        if(empregadoDAO.insertEmpregado(empregado1)){
+            System.out.println("Empregado adicionado com sucesso\n");
+        }
+        empregadoDAO.selectInfosEmpregado(3);
+        if(empregadoDAO.deleteEmpregado(3)){
+            System.out.println("\nEmpregado removido com sucesso\n");
+        }
+
         while(flag){
             System.out.println("Bem vindo ao sistema da Farmácia");
             System.out.println("Selecione uma das opções abaixo: ");
