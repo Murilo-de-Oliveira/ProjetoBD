@@ -3,26 +3,26 @@ package br.inatel.Model;
 import java.util.Date;
 
 public class Remedio {
-    private int id;
+    private int idRemedio;
     private String nomeRemedio;
     private String fabricante;
     private String tipoRemedio;
     private int estoque;
     private String validade;
-    private double preco;
+    private double preço;
 
-    public Remedio(int id, String nomeRemedio, String fabricante, String tipoRemedio, int estoque, String validade, double preco) {
-        this.id = id;
+    public Remedio(int idRemedio, String nomeRemedio, String fabricante, String tipoRemedio, int estoque, String validade, double preço) {
+        this.idRemedio = idRemedio;
         this.nomeRemedio = nomeRemedio;
         this.fabricante = fabricante;
         this.tipoRemedio = tipoRemedio;
         this.estoque = estoque;
         this.validade = validade;
-        this.preco = preco;
+        this.preço = preço;
     }
 
     public int getId() {
-        return id;
+        return idRemedio;
     }
 
     public String getNomeRemedio() {
@@ -46,6 +46,6 @@ public class Remedio {
     }
 
     public double getPreco() {
-        return preco;
+        return preço;
     }
 }

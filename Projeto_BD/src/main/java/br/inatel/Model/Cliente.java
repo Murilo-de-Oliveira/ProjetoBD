@@ -6,15 +6,15 @@ public class Cliente {
     private int id;
     private String nome;
     private String telefone;
-    private String endereco;
-    private String data;
+    private String endereço;
+    private String dataNascimento;
 
-    public Cliente(int id, String nome, String telefone, String endereco, String data) {
+    public Cliente(int id, String nome, String telefone, String endereço, String dataNascimento) {
         this.id = id;
         this.nome = nome;
         this.telefone = telefone;
-        this.endereco = endereco;
-        this.data = data;
+        this.endereço = endereço;
+        this.dataNascimento = dataNascimento;
     }
 
     public int getId() {
@@ -29,11 +29,11 @@ public class Cliente {
         return telefone;
     }
 
-    public String getEndereco() {
-        return endereco;
+    public String getEndereço() {
+        return endereço;
     }
 
-    public String getData() {
-        return data;
+    public String getDataNascimento() {
+        return dataNascimento;
     }
 }

@@ -1,25 +1,25 @@
 package br.inatel.DAO;
 
 import br.inatel.Model.Cliente;
+import br.inatel.Model.LoginEmpregado;
+
 import java.sql.SQLException;
 
-public class ClienteDAO extends ConnectionDAO{
+public class LoginEmpregadoDAO extends ConnectionDAO{
     boolean sucesso = false;
 
-    //Inserir cliente no Banco de Dados
-    public boolean insertCliente(Cliente cliente){
-
+    //Adicionando senha, email e idEmpregado no login
+    public boolean insertLoginEmpregado(LoginEmpregado login) {
         connect();
 
-        String sql = "INSERT INTO cliente (id,nome,telefone,endereço,dataNascimento) values (?,?,?,?,?)";
+        String sql = "INSERT INTO loginempregado (id, senha, email, Empregado_idEmpregado) values (?,?,?,?)";
 
         try{
             pst = connection.prepareStatement(sql);
-            pst.setInt(1,cliente.getId());
-            pst.setString(2,cliente.getNome());
-            pst.setString(3,cliente.getTelefone());
-            pst.setString(4,cliente.getEndereço());
-            pst.setString(5,cliente.getDataNascimento());
+            pst.setInt(1,login.getId());
+            pst.setString(2,login.getSenha());
+            pst.setString(3,login.getEmail());
+            pst.setInt(4,login.getEmpregadoID());
             pst.execute();
             sucesso = true;
         } catch (SQLException ex){
@@ -36,26 +36,25 @@ public class ClienteDAO extends ConnectionDAO{
         return sucesso;
     }
 
-    //Buscar cliente no Banco de Dados
-    public boolean selectClienteId(int clienteId) {
+    //Buscar login no Banco de Dados
+    public boolean selectLoginEmpregadoId(int idLogin) {
 
         boolean verificado = false;
         connect();
 
-        String sql = "SELECT * FROM cliente";
+        String sql = "SELECT * FROM loginempregado";
 
         try {
             statement = connection.createStatement();
             resultSet = statement.executeQuery(sql); //ref. a tabela resultante da busca
             while (resultSet.next()) {
-                Cliente clienteTemp = new Cliente(
+                LoginEmpregado loginTemp = new LoginEmpregado(
                         resultSet.getInt("id"),
-                        resultSet.getString("nome"),
-                        resultSet.getString("telefone"),
-                        resultSet.getString("endereço"),
-                        resultSet.getString("dataNascimento")
+                        resultSet.getString("senha"),
+                        resultSet.getString("email"),
+                        resultSet.getInt("Empregado_idEmpregado")
                 );
-                if (clienteTemp.getId() == clienteId) {
+                if(loginTemp.getId() == idLogin){
                     verificado = true;
                 }
             }
@@ -73,34 +72,31 @@ public class ClienteDAO extends ConnectionDAO{
         return verificado;
     }
 
-    //Listar infos de um cliente no Banco de Dados
-    public void selectInfosCliente(int clienteId) {
+    //Listar infos de um login no Banco de Dados
+    public void selectInfosLoginEmpregado(int loginID) {
 
         connect();
 
         boolean verificado;
 
-        String sql = "SELECT * FROM cliente WHERE id = ?";
+        String sql = "SELECT * FROM loginempregado WHERE id = ?";
 
         try {
-
             pst = connection.prepareStatement(sql);
-            pst.setInt(1, clienteId);
+            pst.setInt(1, loginID);
             resultSet = pst.executeQuery();
             while (resultSet.next()) {
-                Cliente clienteTemp = new Cliente(
+                LoginEmpregado loginTemp = new LoginEmpregado(
                         resultSet.getInt("id"),
-                        resultSet.getString("nome"),
-                        resultSet.getString("telefone"),
-                        resultSet.getString("endereço"),
-                        resultSet.getString("dataNascimento")
+                        resultSet.getString("senha"),
+                        resultSet.getString("email"),
+                        resultSet.getInt("Empregado_idEmpregado")
                 );
-                if (clienteTemp.getId() == clienteId) {
-                    System.out.println("Id do Cliente: " + clienteTemp.getId());
-                    System.out.println("Nome do Cliente: " + clienteTemp.getNome());
-                    System.out.println("Telefone do Cliente: " + clienteTemp.getTelefone());
-                    System.out.println("Endereço do Cliente: " + clienteTemp.getEndereço());
-                    System.out.println("Data de nascimento do Cliente: " + clienteTemp.getDataNascimento());
+                if (loginTemp.getId() == loginID) {
+                    System.out.println("Id do Login: " + loginTemp.getId());
+                    System.out.println("Senha: " + loginTemp.getSenha());
+                    System.out.println("Email: " + loginTemp.getEmail());
+                    System.out.println("ID do Empregado: " + loginTemp.getEmpregadoID());
                 }
             }
         } catch (SQLException ex) {
@@ -115,16 +111,16 @@ public class ClienteDAO extends ConnectionDAO{
         }
     }
 
-    //Deletar cliente no Banco de Dados
-    public boolean deleteCliente(int clienteId) {
+    //Deletar login no Banco de Dados
+    public boolean deleteLoginEmpregado(int loginID) {
 
         connect();
 
-        String sql = "DELETE FROM cliente WHERE id=?";
+        String sql = "DELETE FROM loginempregado WHERE id=?";
 
         try {
             pst = connection.prepareStatement(sql);
-            pst.setInt(1, clienteId);
+            pst.setInt(1, loginID);
             pst.execute();
             sucesso = true;
         } catch (SQLException ex) {

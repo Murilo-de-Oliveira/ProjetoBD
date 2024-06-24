@@ -1,24 +1,26 @@
 package br.inatel.Model;
 
 public class Empregado {
-    private int id;
+    private int idEmpregado;
     private String nome;
     private String sobrenome;
-    private String funcao;
-    private int salario;
-    private int telefone;
+    private String função;
+    private double salário;
+    private String telefone;
+    private int idade;
 
-    public Empregado(int id, String nome, String sobrenome, String funcao, int salario, int telefone) {
-        this.id = id;
+    public Empregado(int idTemp, String nome, String sobrenome, String função, double salário, String telefone, int idade) {
+        this.idEmpregado = idTemp;
         this.nome = nome;
         this.sobrenome = sobrenome;
-        this.funcao = funcao;
-        this.salario = salario;
+        this.função = função;
+        this.salário = salário;
         this.telefone = telefone;
+        this.idade = idade;
     }
 
-    public int getId() {
-        return id;
+    public int getIdEmpregado() {
+        return idEmpregado;
     }
 
     public String getNome() {
@@ -30,14 +32,16 @@ public class Empregado {
     }
 
     public String getFuncao() {
-        return funcao;
+        return função;
     }
 
-    public int getSalario() {
-        return salario;
+    public double getSalario() {
+        return salário;
     }
 
-    public int getTelefone() {
+    public String getTelefone() {
         return telefone;
     }
+
+    public int getIdade(){return idade;}
 }
